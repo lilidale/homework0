@@ -1,0 +1,44 @@
+---
+title: "hw0"
+author: "Li Li"
+format: html
+execute:
+  echo: false
+---
+
+```{r}
+# quadratic function solver
+quad = function(a, b, c)
+{
+  print(paste0("Solving for the quadratic equation: ", 
+               a, "x^2 + ", b, "x + ", c))
+  if(b^2 - 4 * a * c < 0) 
+    {return(paste0("No real number root."))}
+  answer = c((-b + sqrt(b^2 - 4 * a * c)) / (2 * a),
+             (-b - sqrt(b^2 - 4 * a * c)) / (2 * a))
+  if(answer[1] == answer[2]) 
+    {return(paste0("There is 1 soultion: ", answer[1]))}
+  print(paste0("There are 2 soultions: ", answer[1], " and ", answer[2]))
+}
+```
+
+```{r}
+# f(x) = a*x^2 + b*x + c
+a = 1
+b = 3
+c = 2
+```
+
+We are trying to solve for the quadratic equation $f(x) = ax^2 + bx + c = 0$, where a = `r a`, b = `r b`, c = `r c`.
+
+```{r}
+quad(a, b, c)
+```
+
+The following plot confirms the result. The parabolic curve is $f(x)$ and where it intersects y = 0 (the dashed line) is the solution for $f(x) = 0$. The intersections here are x = -1 and -2, which is the same as the result above.
+
+```{r}
+x = seq(-5, 5, length = 300)
+plot(x, a*x^2 + b*x + c, type = "l")
+abline(h = 0, lty = 2)
+```
